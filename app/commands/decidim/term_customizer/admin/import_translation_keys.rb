@@ -43,8 +43,8 @@ module Decidim
               attrs = {
                 key: key,
                 locale: locale,
-                translation_set_id: translation_set.id
               }
+              attrs.merge(translation_set_id: translation_set.id)
               next unless TermCustomizer::Translation.find_by(attrs).nil?
 
               attrs.merge(value: I18n.t(key, locale: locale, default: ""))
