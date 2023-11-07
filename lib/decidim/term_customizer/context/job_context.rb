@@ -17,6 +17,8 @@ module Decidim
 
           data[:job].arguments.each do |arg|
             arg = arg.fetch(:args, []) if arg.is_a?(Hash) && arg.has_key?(:args)
+            next unless arg.is_a?(Array) || arg.is_a?(Decidim::Organization) || arg.is_a?(Decidim::User)
+
             arguments = arguments_for(arg)
           end
 
