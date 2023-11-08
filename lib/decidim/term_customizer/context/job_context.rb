@@ -8,23 +8,16 @@ module Decidim
         def resolve!
           # Figure out the organization and user through the job arguments if
           # passed for the job.
-          arguments = {
-            organization: nil,
-            space: nil,
-            component: nil,
-            user: nil
-          }
-
+          user = nil
           data[:job].arguments.each do |arg|
-            arg = arg.fetch(:args, []) if arg.is_a?(Hash) && arg.has_key?(:args)
-            next unless arg.is_a?(Array) || arg.is_a?(Decidim::Organization) || arg.is_a?(Decidim::User)
+            arg = arg[:args].first if arg.is_a?(Hash)
 
-            arguments = arguments_for(arg)
+            @organization ||= organization_from_argument(arg)
+            @space ||= space_from_argument(arg)
+            @component ||= component_from_argument(arg)
+            user ||= arg if arg.is_a?(Decidim::User)
           end
 
-          @organization ||= arguments[:organization]
-          @space ||= arguments[:space]
-          @component ||= arguments[:component]
           # In case a component was found, define the space as the component
           # space to avoid any conflicts.
           @space = component.participatory_space if component
@@ -35,7 +28,7 @@ module Decidim
 
           # In case an organization could not be resolved any other way, check
           # it through the user (if the user was passed).
-          @organization ||= arguments[:user]&.organization if arguments[:user]
+          @organization ||= user.organization if user
         end
 
         # rubocop:enable Metrics/PerceivedComplexity
@@ -43,7 +36,7 @@ module Decidim
         protected
 
         def arguments_for(args)
-          return conf_for_arg(args.last) if args.is_a?(Array)
+          return conf_for_arg(args.first) if args.is_a?(Array)
 
           conf_for_arg(args)
         end
