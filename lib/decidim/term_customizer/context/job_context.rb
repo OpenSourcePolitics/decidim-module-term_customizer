@@ -35,21 +35,6 @@ module Decidim
 
         protected
 
-        def arguments_for(args)
-          return conf_for_arg(args.first) if args.is_a?(Array)
-
-          conf_for_arg(args)
-        end
-
-        def conf_for_arg(arg)
-          {
-            organization: organization_from_argument(arg),
-            space: space_from_argument(arg),
-            component: component_from_argument(arg),
-            user: arg.is_a?(Decidim::User) ? arg : nil
-          }
-        end
-
         def organization_from_argument(arg)
           return arg if arg.is_a?(Decidim::Organization)
 
