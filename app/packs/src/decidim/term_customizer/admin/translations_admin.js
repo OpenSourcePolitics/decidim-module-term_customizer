@@ -41,6 +41,7 @@ $(() => {
         item.innerHTML = replacedText;
         item.dataset.value = valueItem.value;
       },
+      maxResults: 200,
       dataSource
     });
   };
