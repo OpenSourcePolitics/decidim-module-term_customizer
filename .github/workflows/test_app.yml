@@ -66,11 +66,11 @@ jobs:
           chromedriver-version: ${{inputs.chrome_version}}
         name: Install Chrome version ${{inputs.chrome_version}}
       - uses: actions/cache@v4
-        id: app-cache
+        id: decidim-app-cache
         with:
           path: ./spec/decidim_dummy_app/
           key: app-${{ github.sha }}
-          restore-keys: app-${{ github.sha }}
+          restore-keys: decidim-app-${{ github.sha }}
       - run: |
           bundle install
           bundle exec rake db:create db:schema:load
