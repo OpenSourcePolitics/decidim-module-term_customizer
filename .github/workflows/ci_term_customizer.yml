@@ -19,5 +19,5 @@ jobs:
   main:
     needs: build_app
     name: Tests
-    uses: Platoniq/gha-decidim-module/.github/workflows/ci_rspec.yml@main
+    uses: OpenSourcePolitics/decidim-module-additional_authorization_handler/.github/workflows/test_app.yml@master
     secrets: inherit
