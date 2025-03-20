@@ -19,5 +19,7 @@ jobs:
   main:
     needs: build_app
     name: Tests
-    uses: OpenSourcePolitics/decidim-module-additional_authorization_handler/.github/workflows/test_app.yml@master
+    uses: ./.github/workflows/test_app.yml
+    with:
+        test_command: "bundle exec rspec --pattern './spec/**/*_spec.rb'"
     secrets: inherit
