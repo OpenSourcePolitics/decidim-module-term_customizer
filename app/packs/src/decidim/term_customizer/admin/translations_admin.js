@@ -26,7 +26,6 @@ $(() => {
   // Just to avoid the "no-new" ESLint issue, wrap this in a function
   const initiate = () => {
     const config = JSON.parse(searchInput.dataset.autocomplete);
-
     return new AutoComplete(searchInput, {
       name: searchInput.getAttribute("name"),
       placeholder: searchInput.getAttribute("placeholder"),
@@ -41,6 +40,7 @@ $(() => {
         item.innerHTML = replacedText;
         item.dataset.value = valueItem.value;
       },
+      maxResults: 200,
       dataSource
     });
   };
