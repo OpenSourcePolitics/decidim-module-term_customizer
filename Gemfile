@@ -19,14 +19,14 @@ gem "decidim-term_customizer", path: "."
 
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 5.6.2"
-
-gem "faker", "~> 3.2"
+gem "uri", "1.0.4"
+gem "faker", "~> 3.6"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
   gem "dalli", "~> 2.7", ">= 2.7.10" # For testing MemCacheStore
   gem "decidim-dev", DECIDIM_VERSION
-  gem "rubocop-performance", "~> 1.21.0"
+  gem "rubocop-performance", "~> 1.25.0"
 end
 
 group :development do
