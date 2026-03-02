@@ -78,6 +78,10 @@ jobs:
         shell: "bash"
         working-directory: ./spec/decidim_dummy_app/
       - run: |
+          rm -f ./spec/decidim_dummy_app/app/services/dummy_signature_handler.rb
+          rm -f ./spec/decidim_dummy_app/app/services/dummy_sms_mobile_phone_validator.rb
+        name: Remove Initiative-dependent dummy files
+      - run: |
           sudo Xvfb -ac $DISPLAY -screen 0 1920x1084x24 > /dev/null 2>&1 & # optional
           ${{ inputs.test_command }}
         name: RSpec
