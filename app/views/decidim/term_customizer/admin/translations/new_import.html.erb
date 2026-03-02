@@ -11,7 +11,7 @@
         </div>
 
         <div id="js-other-actions-wrapper">
-          <%= link_to t("actions.back", scope: "decidim.term_customizer.admin"), translation_set_translations_path(set), class: "button hollow tiny button--simple" %>
+          <%= link_to t("actions.back", scope: "decidim.term_customizer.admin"), translation_set_translations_path(set), class: "button button__sm button__secondary" %>
         </div>
       </h2>
     </div>
@@ -35,7 +35,7 @@
       </div>
       <div class="item__edit-sticky">
         <div class="item__edit-sticky-container">
-          <%= form.submit t(".start_import") %>
+          <%= form.submit t(".start_import"), class: "button button__sm button__secondary" %>
         </div>
       </div>
     </div>

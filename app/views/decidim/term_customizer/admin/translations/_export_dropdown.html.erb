@@ -1,8 +1,14 @@
-<span class="button button__sm button__secondary hollow tiny button--simple" data-toggle="export-dropdown"><%= t "actions.export", scope: "decidim.admin" %></span>
-<div class="dropdown-pane" id="export-dropdown" data-dropdown data-position=bottom data-alignment=right data-auto-focus="true" data-close-on-click="true">
-  <ul class="vertical menu add-components">
-    <% %w{CSV JSON Excel}.each do |format| %>
-      <li class="exports--format--<%= format.downcase %> exports--translations"><%= link_to t("decidim.admin.exports.export_as", name: t("decidim.term_customizer.admin.titles.translations"), export_format: format.upcase), export_translation_set_translations_path(set, format: format), method: :post %></li>
-    <% end %>
-  </ul>
-</div>
+<button id="admin-dropdown-export-translations" class="button button__sm button__secondary w-fit" data-controller="dropdown" data-target="export-dropdown">
+  <%= t "actions.export", scope: "decidim.admin" %>
+  <%= icon "arrow-down-s-line" %>
+</button>
+<ul id="export-dropdown" class="dropdown right-0" aria-hidden="true">
+  <% %w(CSV JSON Excel).each do |format| %>
+    <li class="dropdown__item">
+      <%= link_to export_translation_set_translations_path(set, format: format), class: "dropdown__button", method: :post do %>
+        <%= t("decidim.admin.exports.export_as", name: t("decidim.term_customizer.admin.titles.translations"), export_format: format.upcase) %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
