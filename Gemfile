@@ -18,9 +18,9 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-term_customizer", path: "."
 
 gem "bootsnap", "~> 1.4"
+gem "faker", "~> 3.6"
 gem "puma", ">= 5.6.2"
 gem "uri", "1.0.4"
-gem "faker", "~> 3.6"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
